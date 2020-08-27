@@ -1,25 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Kayne Wang</title>
-    <link>https://KayneWang.github.io/</link>
-    <description>Recent content on Kayne Wang</description>
+    <title>React on Kayne Wang</title>
+    <link>https://KayneWang.github.io/categories/react/</link>
+    <description>Recent content in React on Kayne Wang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Kayne Wang</copyright>
     <lastBuildDate>Thu, 20 Aug 2020 20:45:14 +0800</lastBuildDate>
     
-	<atom:link href="https://KayneWang.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://KayneWang.github.io/categories/react/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>About</title>
-      <link>https://KayneWang.github.io/about/</link>
-      <pubDate>Wed, 26 Aug 2020 23:13:40 +0800</pubDate>
-      
-      <guid>https://KayneWang.github.io/about/</guid>
-      <description>个人简历 基本信息 姓名：王增凯 电话：17602136657 github：https://github.com/KayneWang 技能 掌握 rea</description>
-    </item>
     
     <item>
       <title>React 事件系统</title>
