@@ -49,7 +49,7 @@
 <meta itemprop="description" content="Web 的内存和性能 直接添加到页面上的事件处理程序的数量会直接影响页面性能： 每个函数都是对象，都会占用内存 必须事先指定所有事件，从而导致DOM访问">
 <meta itemprop="datePublished" content="2020-08-20T20:45:14+08:00" />
 <meta itemprop="dateModified" content="2020-08-20T20:45:14+08:00" />
-<meta itemprop="wordCount" content="454">
+<meta itemprop="wordCount" content="764">
 
 
 
@@ -140,7 +140,19 @@
         <li><a href="#事件委托">事件委托</a></li>
       </ul>
     </li>
-    <li><a href="#react-事件系统">React 事件系统</a></li>
+    <li><a href="#react-事件系统">React 事件系统</a>
+      <ul>
+        <li><a href="#react-合成事件对比-javascript-原生事件">React 合成事件对比 JavaScript 原生事件</a>
+          <ul>
+            <li><a href="#事件传播与阻止事件传播">事件传播与阻止事件传播</a></li>
+            <li><a href="#事件类型">事件类型</a></li>
+            <li><a href="#绑定方式">绑定方式</a></li>
+            <li><a href="#事件对象">事件对象</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#后续">后续</a></li>
   </ul>
 </nav>
   </div>
@@ -220,6 +232,52 @@
 <p>React 基于 VDOM 实现了一个 SyntheticEvent(合成事件)层，完全满足 W3C 标准，所以同样支持事件冒泡。</p>
 <p>所有的事件都是自动绑定到最外层，如果需要访问原生事件对象，可以使用 nativeEvent。</p>
 <p>其中的机制之一就包括上面所说的事件委托，另外一个是自动绑定。当然在实际开发过程中(使用 ES6 的 class 或者纯函数)还是需要手动进行方法绑定。</p>
+<h2 id="react-合成事件对比-javascript-原生事件">React 合成事件对比 JavaScript 原生事件</h2>
+<p>从 4 个方面对比</p>
+<h3 id="事件传播与阻止事件传播">事件传播与阻止事件传播</h3>
+<p>浏览器原生 DOM 事件分为三个阶段：事件捕获、目标对象本身程序调用和事件冒泡。但是事件捕获在低于 IE9 版本的浏览器是不支持的，并且实际开发中意义不大，所以 React 只实现了事件冒泡机制。</p>
+<p>阻止原生事件传播使用 e.preventDefault()，低于 IE9 使用 e.cancelBubble = true 。React 中做了兼容，仅需使用第一种即可。</p>
+<h3 id="事件类型">事件类型</h3>
+<p>是原生事件的子集</p>
+<h3 id="绑定方式">绑定方式</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html">/* DOM 中直接绑定 */
+<span class="p">&lt;</span><span class="nt">button</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&#34;test()&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// js 绑定
+</span><span class="c1"></span><span class="nx">el</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="nx">e</span> <span class="p">=&gt;</span> <span class="p">{......}</span>
+
+<span class="c1">// 使用监听函数
+</span><span class="c1"></span><span class="nx">el</span><span class="p">.</span><span class="nx">addEventlistener</span><span class="p">(</span><span class="s2">&#34;click&#34;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{},</span> <span class="kc">false</span><span class="p">)</span>
+<span class="nx">el</span><span class="p">.</span><span class="nx">attachEvent</span><span class="p">(</span><span class="s2">&#34;onclick&#34;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{})</span>
+
+<span class="c1">// react
+</span><span class="c1"></span><span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="p">=&gt;</span> <span class="p">{......}}</span><span class="o">&gt;</span><span class="nx">React</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="事件对象">事件对象</h3>
+<p>低版本 IE 浏览器有使用 window.event 来获取事件对象，React 的事件合成系统则不存在这种问题。</p>
+<h1 id="后续">后续</h1>
+<p>React 17 版本中事件系统会有变化，可以在文档中<a href="https://zh-hans.reactjs.org/blog/2020/08/10/react-v17-rc.html#changes-to-event-delegation">查看</a>。</p>
 
     </div>
 
