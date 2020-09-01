@@ -31,6 +31,15 @@
     </item>
     
     <item>
+      <title>Read List</title>
+      <link>https://KayneWang.github.io/post/read-list/</link>
+      <pubDate>Mon, 31 Aug 2020 22:44:05 +0800</pubDate>
+      
+      <guid>https://KayneWang.github.io/post/read-list/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Promise 源码实现</title>
       <link>https://KayneWang.github.io/post/promise/</link>
       <pubDate>Mon, 31 Aug 2020 19:52:40 +0800</pubDate>
