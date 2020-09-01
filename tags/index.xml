@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Kayne Wang</copyright>
-    <lastBuildDate>Thu, 20 Aug 2020 20:45:14 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 01 Sep 2020 10:40:27 +0800</lastBuildDate>
     
 	<atom:link href="https://KayneWang.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>promise</title>
+      <link>https://KayneWang.github.io/tags/promise/</link>
+      <pubDate>Tue, 01 Sep 2020 10:40:27 +0800</pubDate>
+      
+      <guid>https://KayneWang.github.io/tags/promise/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>React</title>

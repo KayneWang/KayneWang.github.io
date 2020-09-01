@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Kayne Wang</title>
-    <link>https://KayneWang.github.io/post/</link>
-    <description>Recent content in Posts on Kayne Wang</description>
+    <title>promise on Kayne Wang</title>
+    <link>https://KayneWang.github.io/tags/promise/</link>
+    <description>Recent content in promise on Kayne Wang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Kayne Wang</copyright>
     <lastBuildDate>Tue, 01 Sep 2020 10:40:27 +0800</lastBuildDate>
     
-	<atom:link href="https://KayneWang.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://KayneWang.github.io/tags/promise/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -28,15 +28,6 @@
       
       <guid>https://KayneWang.github.io/post/promise/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>React 事件系统</title>
-      <link>https://KayneWang.github.io/post/react-event-system/</link>
-      <pubDate>Thu, 20 Aug 2020 20:45:14 +0800</pubDate>
-      
-      <guid>https://KayneWang.github.io/post/react-event-system/</guid>
-      <description>Web 的内存和性能 直接添加到页面上的事件处理程序的数量会直接影响页面性能： 每个函数都是对象，都会占用内存 必须事先指定所有事件，从而导致DOM访问</description>
     </item>
     
   </channel>
