@@ -10,14 +10,14 @@
   
   <url>
     <loc>https://KayneWang.github.io/</loc>
-    <lastmod>2020-09-02T10:18:57+08:00</lastmod>
+    <lastmod>2020-09-02T11:41:33+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://KayneWang.github.io/post/</loc>
-    <lastmod>2020-09-02T10:18:57+08:00</lastmod>
+    <lastmod>2020-09-02T11:41:33+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -38,7 +38,7 @@
   
   <url>
     <loc>https://KayneWang.github.io/tags/</loc>
-    <lastmod>2020-09-02T10:18:57+08:00</lastmod>
+    <lastmod>2020-09-02T11:41:33+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -59,7 +59,7 @@
   
   <url>
     <loc>https://KayneWang.github.io/categories/</loc>
-    <lastmod>2020-09-02T10:18:57+08:00</lastmod>
+    <lastmod>2020-09-02T11:41:33+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -81,6 +81,27 @@
   <url>
     <loc>https://KayneWang.github.io/post/react-event-system/</loc>
     <lastmod>2020-08-20T20:45:14+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://KayneWang.github.io/post/css/</loc>
+    <lastmod>2020-09-02T11:41:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://KayneWang.github.io/tags/css/</loc>
+    <lastmod>2020-09-02T11:41:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://KayneWang.github.io/categories/css/</loc>
+    <lastmod>2020-09-02T11:41:33+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
