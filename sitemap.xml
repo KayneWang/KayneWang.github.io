@@ -9,15 +9,29 @@
   </url>
   
   <url>
+    <loc>https://KayneWang.github.io/post/some-js-source/</loc>
+    <lastmod>2020-09-03T17:32:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://KayneWang.github.io/</loc>
-    <lastmod>2020-09-02T11:41:33+08:00</lastmod>
+    <lastmod>2020-09-03T17:32:21+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://KayneWang.github.io/post/</loc>
-    <lastmod>2020-09-02T11:41:33+08:00</lastmod>
+    <lastmod>2020-09-03T17:32:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://KayneWang.github.io/post/event-emitter/</loc>
+    <lastmod>2020-09-03T17:09:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

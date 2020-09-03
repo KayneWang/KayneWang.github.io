@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Kayne Wang</copyright>
-    <lastBuildDate>Tue, 01 Sep 2020 10:40:27 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 03 Sep 2020 17:32:21 +0800</lastBuildDate>
     
 	<atom:link href="https://KayneWang.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,24 @@
       
       <guid>https://KayneWang.github.io/about/</guid>
       <description>个人简历 基本信息 姓名：王增凯 电话：17602136657 github：https://github.com/KayneWang 技能 熟练 rea</description>
+    </item>
+    
+    <item>
+      <title>JS 常用方法源码实现</title>
+      <link>https://KayneWang.github.io/post/some-js-source/</link>
+      <pubDate>Thu, 03 Sep 2020 17:32:21 +0800</pubDate>
+      
+      <guid>https://KayneWang.github.io/post/some-js-source/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Event 实现</title>
+      <link>https://KayneWang.github.io/post/event-emitter/</link>
+      <pubDate>Thu, 03 Sep 2020 17:09:50 +0800</pubDate>
+      
+      <guid>https://KayneWang.github.io/post/event-emitter/</guid>
+      <description></description>
     </item>
     
     <item>
