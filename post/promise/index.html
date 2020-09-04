@@ -49,7 +49,7 @@
 <meta itemprop="description" content="Promise/A&#43; 规范源码实现">
 <meta itemprop="datePublished" content="2020-08-31T19:52:40+08:00" />
 <meta itemprop="dateModified" content="2020-08-31T19:52:40+08:00" />
-<meta itemprop="wordCount" content="1187">
+<meta itemprop="wordCount" content="1182">
 
 
 
@@ -361,11 +361,9 @@
 </span><span class="lnt">30
 </span><span class="lnt">31
 </span><span class="lnt">32
-</span><span class="lnt">33
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">resolvePromise</span><span class="p">(</span><span class="nx">promise2</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">promise2</span> <span class="o">===</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">reject</span><span class="p">(</span><span class="k">new</span> <span class="nx">TypeError</span><span class="p">(</span><span class="s1">&#39;Chaining cycle&#39;</span><span class="p">));</span>
   <span class="p">}</span>
