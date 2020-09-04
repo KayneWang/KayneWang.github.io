@@ -49,7 +49,7 @@
 <meta itemprop="description" content="Promise/A&#43; 规范源码实现">
 <meta itemprop="datePublished" content="2020-08-31T19:52:40+08:00" />
 <meta itemprop="dateModified" content="2020-08-31T19:52:40+08:00" />
-<meta itemprop="wordCount" content="1186">
+<meta itemprop="wordCount" content="1187">
 
 
 
@@ -369,7 +369,7 @@
   <span class="k">if</span> <span class="p">(</span><span class="nx">promise2</span> <span class="o">===</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">reject</span><span class="p">(</span><span class="k">new</span> <span class="nx">TypeError</span><span class="p">(</span><span class="s1">&#39;Chaining cycle&#39;</span><span class="p">));</span>
   <span class="p">}</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">x</span> <span class="o">===</span> <span class="s1">&#39;object&#39;</span> <span class="o">||</span> <span class="k">typeof</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">x</span> <span class="o">===</span> <span class="s1">&#39;object&#39;</span> <span class="o">||</span> <span class="k">typeof</span> <span class="nx">x</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">let</span> <span class="nx">used</span><span class="p">;</span> <span class="c1">// PromiseA+ 2.3.3.3 只能调用一次
 </span><span class="c1"></span>    <span class="k">try</span> <span class="p">{</span>
       <span class="kd">let</span> <span class="nx">then</span> <span class="o">=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">then</span><span class="p">;</span>
