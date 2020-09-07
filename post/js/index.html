@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>JavaScript - Kayne Wang</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Kayne" /><meta name="description" content="js 面试题" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://KayneWang.github.io/post/js/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="JavaScript" />
+<meta property="og:description" content="js 面试题" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://KayneWang.github.io/post/js/" />
+<meta property="article:published_time" content="2019-09-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-09-03T14:45:06+08:00" />
+<meta itemprop="name" content="JavaScript">
+<meta itemprop="description" content="js 面试题">
+<meta itemprop="datePublished" content="2019-09-15T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-09-03T14:45:06+08:00" />
+<meta itemprop="wordCount" content="2735">
+
+
+
+<meta itemprop="keywords" content="js," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaScript"/>
+<meta name="twitter:description" content="js 面试题"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Kayne</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Kayne</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">JavaScript</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-09-15 </span>
+        <div class="post-category">
+            <a href="/categories/js/"> js </a>
+            </div>
+        
+      </div>
+    </header>
+
+    
+    <div class="post-content">
+      <h2 id="解释下变量提升">解释下变量提升</h2>
+<p>JavaScript引擎的工作方式是，先解析代码，获取所有被声明的变量，然后再一行一行地运行。这造成的结果，就是所有的变量的声明语句，都会被提升到代码的头部，这就叫做变量提升（hoisting）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="c1">// undefined
+</span><span class="c1"></span>
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="kd">function</span> <span class="nx">b</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nx">b</span><span class="p">()</span> <span class="c1">// 1
+</span></code></pre></td></tr></table>
+</div>
+</div><p>上面的代码实际执行顺序是这样的:</p>
+<p>第一步： 引擎将<b>var a = 1</b>拆解为<b>var a = undefined</b>和 <b>a = 1</b>，并将<b>var a = undefined</b>放到最顶端，a = 1还在原来的位置</p>
+<p>这样一来代码就是这样:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="kc">undefined</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="c1">// undefined
+</span><span class="c1"></span>
+<span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="kd">function</span> <span class="nx">b</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nx">b</span><span class="p">()</span> <span class="c1">// 1
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="理解闭包吗">理解闭包吗</h2>
+<h3 id="闭包是什么">闭包是什么</h3>
+<p>MDN的解释：闭包是函数和声明该函数的词法环境的组合。</p>
+<p>按照我的理解就是：闭包 =『函数』和『函数体内可访问的变量总和』</p>
+<p>举个简单的例子:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kd">function</span> <span class="nx">add</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">2</span>
+
+        <span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nx">b</span> <span class="o">+</span> <span class="nx">a</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">);</span> <span class="c1">// 3
+</span><span class="c1"></span>    <span class="p">}</span>
+    <span class="nx">add</span><span class="p">()</span>
+<span class="p">})()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>add函数本身，以及其内部可访问的变量，即 a = 1，这两个组合在一起就被称为闭包，仅此而已。</p>
+<h3 id="闭包的作用">闭包的作用</h3>
+<p>闭包最大的作用就是隐藏变量，闭包的一大特性就是<b>内部函数总是可以访问其所在的外部函数中声明的参数和变量，即使在其外部函数被返回（寿命终结）了之后</b></p>
+<p>基于此特性，JavaScript可以实现私有变量、特权变量、储存变量等</p>
+<p>我们就以私有变量举例，私有变量的实现方法很多，有靠约定的（变量名前加_）,有靠Proxy代理的，也有靠Symbol这种新数据类型的。</p>
+<p>但是真正广泛流行的其实是使用闭包。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Person</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;cxk&#39;</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">getName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+        <span class="nx">name</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">cxk</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">()</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cxk</span><span class="p">.</span><span class="nx">getName</span><span class="p">())</span> <span class="c1">//cxk
+</span><span class="c1"></span><span class="nx">cxk</span><span class="p">.</span><span class="nx">setName</span><span class="p">(</span><span class="s1">&#39;jntm&#39;</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cxk</span><span class="p">.</span><span class="nx">getName</span><span class="p">())</span> <span class="c1">//jntm
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="c1">//name is not defined
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="javascript的作用域链">JavaScript的作用域链</h2>
+<p>JavaScript属于静态作用域，即声明的作用域是根据程序正文在编译时就确定的，有时也称为词法作用域。</p>
+<p>其本质是JavaScript在执行过程中会创造可执行上下文，可执行上下文中的词法环境中含有外部词法环境的引用，我们可以通过这个引用获取外部词法环境的变量、声明等，这些引用串联起来一直指向全局的词法环境，因此形成了作用域链。</p>
+<p><img src="/img/js-context.png" alt="JS作用域"></p>
+<h2 id="es6模块与commonjs模块有什么区别">ES6模块与CommonJS模块有什么区别</h2>
+<p>区别：</p>
+<ul>
+<li>CommonJS是对模块的浅拷贝，ES6 Module是对模块的引用,即ES6 Module只存只读，不能改变其值，具体点就是指针指向不能变，类似const</li>
+<li>import的接口是read-only（只读状态），不能修改其变量值。 即不能修改其变量的指针指向，但可以改变变量内部指针指向,可以对commonJS对重新赋值（改变指针指向），但是对ES6 Module赋值会编译报错。</li>
+</ul>
+<p>相同点：</p>
+<ul>
+<li>CommonJS和ES6 Module都可以对引入的对象进行赋值，即对对象内部属性的值进行改变。</li>
+</ul>
+<h2 id="js有哪些类型">js有哪些类型</h2>
+<p>JavaScript的类型分为两大类，一类是原始类型，一类是复杂(引用）类型。</p>
+<p>原始类型:</p>
+<ul>
+<li>boolean</li>
+<li>null</li>
+<li>undefined</li>
+<li>number</li>
+<li>string</li>
+<li>symbol</li>
+</ul>
+<p>复杂类型：</p>
+<ul>
+<li>object</li>
+</ul>
+<p>还有一个没有正式发布但即将被加入标准的原始类型BigInt</p>
+<h2 id="为什么会有bigint的提案">为什么会有BigInt的提案</h2>
+<p>JavaScript中Number.MAX_SAFE_INTEGER表示最大安全数字,计算结果是9007199254740991，即在这个数范围内不会出现精度丢失（小数除外）。</p>
+<p>但是一旦超过这个范围，js就会出现计算不准确的情况，这在大数计算的时候不得不依靠一些第三方库进行解决，因此官方提出了BigInt来解决此问题。</p>
+<h2 id="null与undefined的区别是什么">null与undefined的区别是什么</h2>
+<p>null表示为空，代表此处不应该有值的存在，一个对象可以是null，代表是个空对象，而null本身也是对象。</p>
+<p>undefined表示『不存在』，JavaScript是一门动态类型语言，成员除了表示存在的空值外，还有可能根本就不存在（因为存不存在只在运行期才知道），这就是undefined的意义所在。</p>
+<h2 id="隐式类型转换的原理是什么">隐式类型转换的原理是什么</h2>
+<ol>
+<li>如果变量为字符串，直接返回.</li>
+<li>如果!IS_SPEC_OBJECT(x)，直接返回.</li>
+<li>如果IS_SYMBOL_WRAPPER(x)，则抛出异常.</li>
+<li>否则会根据传入的hint来调用DefaultNumber和DefaultString，比如如果为Date对象，会调用DefaultString.</li>
+<li>DefaultNumber：首先x.valueOf，如果为primitive，则返回valueOf后的值，否则继续调用x.toString，如果为primitive，则返回toString后的值，否则抛出异常</li>
+<li>DefaultString：和DefaultNumber正好相反，先调用toString，如果不是primitive再调用valueOf.</li>
+</ol>
+<p>({}) + 1（将{}放在括号中是为了内核将其认为一个代码块）会输出啥？可能日常写代码并不会这样写，不过网上出过类似的面试题。</p>
+<p>加操作只有左右运算符同时为String或Number时会执行对应的%_StringAdd或%NumberAdd，下面看下({}) + 1内部会经过哪些步骤：</p>
+<p>{}和1首先会调用ToPrimitive {}会走到DefaultNumber，首先会调用valueOf，返回的是Object {}，不是primitive类型，从而继续走到toString，返回[object Object]，是String类型 最后加操作，结果为[object Object]1</p>
+<h2 id="谈谈你对原型链的理解">谈谈你对原型链的理解</h2>
+<p>这个问题关键在于两个点，一个是原型对象是什么，另一个是原型链是如何形成的</p>
+<h3 id="原型对象">原型对象</h3>
+<p>绝大部分的函数(少数内建函数除外)都有一个prototype属性,这个属性是原型对象用来创建新对象实例,而所有被创建的对象都会共享原型对象,因此这些对象便可以访问原型对象的属性。</p>
+<p>例如hasOwnProperty()方法存在于Obejct原型对象中,它便可以被任何对象当做自己的方法使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"> <span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;Messi&#34;</span><span class="p">,</span>
+    <span class="nx">age</span><span class="o">:</span> <span class="mi">29</span><span class="p">,</span>
+    <span class="nx">profession</span><span class="o">:</span> <span class="s2">&#34;football player&#34;</span>
+  <span class="p">};</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s2">&#34;name&#34;</span><span class="p">));</span> <span class="c1">//true
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s2">&#34;hasOwnProperty&#34;</span><span class="p">));</span> <span class="c1">//false
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s2">&#34;hasOwnProperty&#34;</span><span class="p">));</span> <span class="c1">//true
+</span></code></pre></td></tr></table>
+</div>
+</div><p>由以上代码可知,hasOwnProperty()并不存在于person对象中,但是person依然可以拥有此方法.</p>
+<p>所以person对象是如何找到Object对象中的方法的呢?靠的是原型链。</p>
+<h3 id="原型链">原型链</h3>
+<p>原因是每个对象都有 <strong>proto</strong> 属性，此属性指向该对象的构造函数的原型。</p>
+<p>对象可以通过 <strong>proto__与上游的构造函数的原型对象连接起来，而上游的原型对象也有一个__proto</strong>，这样就形成了原型链。</p>
+<p><img src="/img/js-prototype.png" alt="JS原型链"></p>
+<h2 id="聊一聊如何在javascript中实现不可变对象">聊一聊如何在JavaScript中实现不可变对象</h2>
+<ol>
+<li>深克隆，但是深克隆的性能非常差，不适合大规模使用</li>
+<li>Immutable.js，Immutable.js是自成一体的一套数据结构，性能良好，但是需要学习额外的API</li>
+<li>immer，利用Proxy特性，无需学习额外的api，性能良好</li>
+</ol>
+<h2 id="javascript的基本类型和复杂类型是储存在哪里的">JavaScript的基本类型和复杂类型是储存在哪里的</h2>
+<p>基本类型储存在栈中，但是一旦被闭包引用则成为常住内存，会储存在内存堆中。</p>
+<p>复杂类型会储存在内存堆中。</p>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/js/">js</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/react-event-system/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">React 事件系统</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/css/">
+            <span class="next-text nav-default">CSS</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/KayneWang" class="iconfont icon-github" title="github"></a>
+  <a href="https://KayneWang.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Kayne Wang</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
