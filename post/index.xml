@@ -18,7 +18,7 @@
       <pubDate>Thu, 03 Sep 2020 17:32:21 +0800</pubDate>
       
       <guid>https://KayneWang.github.io/post/some-js-source/</guid>
-      <description></description>
+      <description>&lt;p&gt;JS 常用方法的源码实现&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -27,7 +27,7 @@
       <pubDate>Thu, 03 Sep 2020 17:09:50 +0800</pubDate>
       
       <guid>https://KayneWang.github.io/post/event-emitter/</guid>
-      <description></description>
+      <description>&lt;p&gt;订阅-发布设计模式实践&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -36,7 +36,7 @@
       <pubDate>Tue, 01 Sep 2020 10:40:27 +0800</pubDate>
       
       <guid>https://KayneWang.github.io/post/promise-extend/</guid>
-      <description></description>
+      <description>&lt;p&gt;Promise 扩展方法的一些实现&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -45,7 +45,7 @@
       <pubDate>Mon, 31 Aug 2020 22:44:05 +0800</pubDate>
       
       <guid>https://KayneWang.github.io/post/read-list/</guid>
-      <description></description>
+      <description>&lt;p&gt;书单系列&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -54,7 +54,7 @@
       <pubDate>Mon, 31 Aug 2020 19:52:40 +0800</pubDate>
       
       <guid>https://KayneWang.github.io/post/promise/</guid>
-      <description></description>
+      <description>&lt;p&gt;&lt;b&gt;理解很重要！理解很重要！理解很重要！&lt;/b&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -72,7 +72,7 @@
       <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>https://KayneWang.github.io/post/js/</guid>
-      <description></description>
+      <description>&lt;p&gt;JS 基础面试题总结&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -81,7 +81,7 @@
       <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>https://KayneWang.github.io/post/css/</guid>
-      <description></description>
+      <description>&lt;p&gt;CSS 基础面试题总结&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -90,7 +90,7 @@
       <pubDate>Fri, 13 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>https://KayneWang.github.io/post/html/</guid>
-      <description></description>
+      <description>&lt;p&gt;HTML 基础面试题总结&lt;/p&gt;</description>
     </item>
     
   </channel>
