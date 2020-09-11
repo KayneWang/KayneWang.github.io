@@ -50,7 +50,7 @@
 <meta itemprop="description" content="JS 常用方法的源码实现">
 <meta itemprop="datePublished" content="2020-09-03T17:32:21+08:00" />
 <meta itemprop="dateModified" content="2020-09-03T17:32:21+08:00" />
-<meta itemprop="wordCount" content="906">
+<meta itemprop="wordCount" content="946">
 
 
 
@@ -150,6 +150,27 @@
 <span class="p">}</span>
 <span class="nx">render</span><span class="p">(</span><span class="nx">template</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span> <span class="c1">// 我是姓名，年龄18，性别undefined
 </span></code></pre></td></tr></table>
+</div>
+</div><h2 id="千分位分隔符">千分位分隔符</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">parseMoney</span><span class="p">(</span><span class="mf">1234.56</span><span class="p">);</span> <span class="c1">// 1,234.56
+</span><span class="c1"></span>
+<span class="kd">function</span> <span class="nx">parseMoney</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">[</span><span class="nx">integer</span><span class="p">,</span> <span class="nx">decimal</span><span class="p">]</span> <span class="o">=</span> <span class="nb">String</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">split</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">num</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">);</span>
+  <span class="nx">integer</span> <span class="o">=</span> <span class="nx">integer</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\d(?=(\d{3})+$)/g</span><span class="p">,</span> <span class="s1">&#39;$&amp;,&#39;</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">integer</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">decimal</span> <span class="o">?</span> <span class="nx">decimal</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
