@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Kayne Wang</copyright>
-    <lastBuildDate>Thu, 20 Aug 2020 20:45:14 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 11 Sep 2020 14:48:20 +0800</lastBuildDate>
     
 	<atom:link href="https://KayneWang.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>immutable</title>
+      <link>https://KayneWang.github.io/categories/immutable/</link>
+      <pubDate>Fri, 11 Sep 2020 14:48:20 +0800</pubDate>
+      
+      <guid>https://KayneWang.github.io/categories/immutable/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>React</title>

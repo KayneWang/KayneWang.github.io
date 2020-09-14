@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>如何实现不可变数据 - Kayne Wang</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="kayne" /><meta name="description" content="不可变数据原理介绍" /><meta name="keywords" content="immutable" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://KayneWang.github.io/post/immutable-data/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="如何实现不可变数据" />
+<meta property="og:description" content="不可变数据原理介绍" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://KayneWang.github.io/post/immutable-data/" />
+<meta property="article:published_time" content="2020-09-11T14:48:20+08:00" />
+<meta property="article:modified_time" content="2020-09-11T14:48:20+08:00" />
+<meta itemprop="name" content="如何实现不可变数据">
+<meta itemprop="description" content="不可变数据原理介绍">
+<meta itemprop="datePublished" content="2020-09-11T14:48:20+08:00" />
+<meta itemprop="dateModified" content="2020-09-11T14:48:20+08:00" />
+<meta itemprop="wordCount" content="1211">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="如何实现不可变数据"/>
+<meta name="twitter:description" content="不可变数据原理介绍"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Kayne</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Kayne</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">如何实现不可变数据</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-09-11 </span>
+        <div class="post-category">
+            <a href="/categories/immutable/"> immutable </a>
+            </div>
+        
+      </div>
+    </header>
+
+    
+    <div class="post-content">
+      <p>丢掉幻想，自己实现一个轻量的<b>不可变数据</b>解决方案。</p>
+<h1 id="不可变数据">不可变数据</h1>
+<p>React 文档中写到：建议把 State 当作不可变对象。实际开发过程中大家肯定也体验过不可变数据带来的好处：</p>
+<ul>
+<li>数据更易追踪、推导</li>
+<li>对 React diff 的检测机制更友好</li>
+</ul>
+<h2 id="inmutablejs">inmutable.js</h2>
+<p>facebook 工程师耗费3年倾力打造，相比较深克隆性能有极大的提升，但是带来的问题也不少：</p>
+<ol>
+<li>实现了所有的不可变结构，导致包很重</li>
+<li>全新的数据操作 api，无法从 js 的习惯无缝转换</li>
+<li>调试困难，很多情况下都需要使用 toJS() 来转换，使用起来体验不太好</li>
+<li>很容易发生滥用的行为，immutable.js 的本质是为了提高 react 渲染性能，但是在使用其数据的时候，大多通过 toJS() 进行转换，这样每次页面更新都会 render，从而导致性能降低</li>
+</ol>
+<p>当然，纵使它有一些缺点，但是 immutable.js 也是目前最为完善的库，在大型前端团队并且对数据可靠度要求很高的时候还是首选。</p>
+<h2 id="自己实现">自己实现</h2>
+<p>我们如何通过原生 js 来自己实现一个简单的 immutable 呢？首先可以想到 defineProperty 和 Proxy 来进行额外操作。</p>
+<p>我们选择 Proxy 来实现（要用就用新的）</p>
+<p>首先定义一个目标对象</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">target</span> <span class="o">=</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;kayne&#39;</span><span class="p">,</span> <span class="nx">age</span><span class="o">:</span> <span class="mi">27</span><span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>下面我们实现每访问一次，age 自动加 1 的操作</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">handler</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">receiver</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`getting </span><span class="si">${</span><span class="nx">key</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">key</span> <span class="o">===</span> <span class="s1">&#39;age&#39;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kr">const</span> <span class="nx">age</span> <span class="o">=</span> <span class="nx">Reflect</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">receiver</span><span class="p">)</span>
+      <span class="nx">Reflect</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">age</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">receiver</span><span class="p">);</span>
+      <span class="k">return</span> <span class="nx">age</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">Reflect</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">receiver</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Proxy</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">handler</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">age</span><span class="p">,</span> <span class="nx">a</span><span class="p">.</span><span class="nx">age</span><span class="p">);</span>
+<span class="c1">//getting age!
+</span><span class="c1">//getting age!
+</span><span class="c1">//30 31
+</span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>如何判断目标对象有没有修改过呢？记录一个标志位最简单：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">createState</span><span class="p">(</span><span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">modified</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// 是否被修改
+</span><span class="c1"></span>  <span class="k">this</span><span class="p">.</span><span class="nx">target</span> <span class="o">=</span> <span class="nx">target</span><span class="p">;</span> <span class="c1">// 目标对象
+</span><span class="c1"></span>  <span class="k">this</span><span class="p">.</span><span class="nx">copy</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span> <span class="c1">// 拷贝的对象
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>这时候，我们就可以通过分析状态来执行不同的操作了：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">createState</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">// 对于get操作,如果目标对象没有被修改直接返回原对象,否则返回拷贝对象
+</span><span class="c1"></span>  <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">modified</span><span class="p">)</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">target</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">copy</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+  <span class="p">},</span>
+  <span class="c1">// 对于set操作,如果目标对象没被修改那么进行修改操作,否则修改拷贝对象
+</span><span class="c1"></span>  <span class="nx">set</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">modified</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">markChanged</span><span class="p">();</span>
+    <span class="k">return</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">copy</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="c1">// 标记状态为已修改,并拷贝
+</span><span class="c1"></span>  <span class="nx">markChanged</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">modified</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">modified</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">copy</span> <span class="o">=</span> <span class="nx">shallowCopy</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">target</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+<span class="kd">function</span> <span class="nx">shallowCopy</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="k">return</span> <span class="nx">value</span><span class="p">.</span><span class="nx">slice</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="kc">null</span><span class="p">),</span> <span class="nx">value</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span> <span class="nx">value</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>最后我们就可以利用构造函数<b>createState</b>接受目标对象<b>state</b>生成对象<b>store</b>,然后我们就可以用<b>Proxy</b>代理<b>store</b>,<b>producer</b>是外部传进来的操作函数,当<b>producer</b>对代理对象进行操作的时候我们就可以通过事先设定好的<b>handler</b>进行代理操作了</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">PROXY_STATE</span> <span class="o">=</span> <span class="nx">Symbol</span><span class="p">(</span><span class="s1">&#39;proxy-state&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">handler</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">get</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">key</span> <span class="o">===</span> <span class="nx">PROXY_STATE</span><span class="p">)</span> <span class="k">return</span> <span class="nx">target</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">target</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nx">set</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">target</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+<span class="c1">// 接受一个目标对象和一个操作目标对象的函数
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">produce</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">producer</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">createState</span><span class="p">(</span><span class="nx">state</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="nx">proxy</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Proxy</span><span class="p">(</span><span class="nx">store</span><span class="p">,</span> <span class="nx">handler</span><span class="p">);</span>
+  <span class="nx">producer</span><span class="p">(</span><span class="nx">proxy</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="nx">newState</span> <span class="o">=</span> <span class="nx">proxy</span><span class="p">[</span><span class="nx">PROXY_STATE</span><span class="p">];</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">newState</span><span class="p">.</span><span class="nx">modified</span><span class="p">)</span> <span class="k">return</span> <span class="nx">newState</span><span class="p">.</span><span class="nx">copy</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">newState</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>验证一下，我们可以看到 produce 并没有影响到原来的目标函数</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">baseState</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="nx">todo</span><span class="o">:</span> <span class="s1">&#39;Learn typescript&#39;</span><span class="p">,</span>
+    <span class="nx">done</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nx">todo</span><span class="o">:</span> <span class="s1">&#39;Try immer&#39;</span><span class="p">,</span>
+    <span class="nx">done</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="p">},</span>
+<span class="p">];</span>
+<span class="kr">const</span> <span class="nx">nextState</span> <span class="o">=</span> <span class="nx">produce</span><span class="p">(</span><span class="nx">baseState</span><span class="p">,</span> <span class="nx">draftState</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">draftState</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="nx">todo</span><span class="o">:</span> <span class="s1">&#39;Tweet about it&#39;</span><span class="p">,</span> <span class="nx">done</span><span class="o">:</span> <span class="kc">false</span><span class="p">});</span>
+  <span class="nx">draftState</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">done</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">baseState</span><span class="p">,</span> <span class="nx">nextState</span><span class="p">);</span>
+<span class="cm">/*
+</span><span class="cm">[ { todo: &#39;Learn typescript&#39;, done: true },
+</span><span class="cm">  { todo: &#39;Try immer&#39;, done: false } ] 
+</span><span class="cm">  [ { todo: &#39;Learn typescript&#39;, done: true ,
+</span><span class="cm">  { todo: &#39;Try immer&#39;, done: true },
+</span><span class="cm">  { todo: &#39;Tweet about it&#39;, done: false } ]
+</span><span class="cm">*/</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="总结">总结</h2>
+<p>其实这个库是参考 <a href="https://github.com/immerjs/immer">immer</a> 来实现的，当然我们的代码十分简陋，主要目的是让大家了解一下不可变数据，感兴趣的可以去看一下完整代码。</p>
+<p>由于 immutable.js 的侵入型较强，非必要情况，最好还是不要轻易选型。</p>
+    </div>
+
+    
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/some-js-source/">
+            <span class="next-text nav-default">JS 常用方法源码实现</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/KayneWang" class="iconfont icon-github" title="github"></a>
+  <a href="https://KayneWang.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Kayne Wang</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
