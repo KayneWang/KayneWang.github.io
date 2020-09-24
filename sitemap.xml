@@ -9,6 +9,27 @@
   </url>
   
   <url>
+    <loc>https://KayneWang.github.io/post/dom-dfs-bfs/</loc>
+    <lastmod>2020-09-24T17:19:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://KayneWang.github.io/</loc>
+    <lastmod>2020-09-24T17:19:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://KayneWang.github.io/post/</loc>
+    <lastmod>2020-09-24T17:19:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://KayneWang.github.io/categories/</loc>
     <lastmod>2020-09-11T14:48:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -17,20 +38,6 @@
   
   <url>
     <loc>https://KayneWang.github.io/categories/immutable/</loc>
-    <lastmod>2020-09-11T14:48:20+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://KayneWang.github.io/</loc>
-    <lastmod>2020-09-11T14:48:20+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://KayneWang.github.io/post/</loc>
     <lastmod>2020-09-11T14:48:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
