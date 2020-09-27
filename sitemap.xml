@@ -9,21 +9,28 @@
   </url>
   
   <url>
-    <loc>https://KayneWang.github.io/post/dom-dfs-bfs/</loc>
-    <lastmod>2020-09-24T17:19:17+08:00</lastmod>
+    <loc>https://KayneWang.github.io/post/js-not/</loc>
+    <lastmod>2020-09-25T17:57:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://KayneWang.github.io/</loc>
-    <lastmod>2020-09-24T17:19:17+08:00</lastmod>
+    <lastmod>2020-09-25T17:57:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://KayneWang.github.io/post/</loc>
+    <lastmod>2020-09-25T17:57:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://KayneWang.github.io/post/dom-dfs-bfs/</loc>
     <lastmod>2020-09-24T17:19:17+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Kayne Wang</copyright>
-    <lastBuildDate>Thu, 24 Sep 2020 17:19:17 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 25 Sep 2020 17:57:03 +0800</lastBuildDate>
     
 	<atom:link href="https://KayneWang.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://KayneWang.github.io/about/</guid>
       <description>个人简历 基本信息 姓名：王增凯 电话：17602136657(微信同号) 邮箱：826981961@qq.com github：https://gi</description>
+    </item>
+    
+    <item>
+      <title>JS 中的 ~(按位非) 运算符</title>
+      <link>https://KayneWang.github.io/post/js-not/</link>
+      <pubDate>Fri, 25 Sep 2020 17:57:03 +0800</pubDate>
+      
+      <guid>https://KayneWang.github.io/post/js-not/</guid>
+      <description>&lt;p&gt;JavaScript 中 ~ 运算符的巧妙运用&lt;/p&gt;</description>
     </item>
     
     <item>
