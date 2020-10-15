@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Kayne Wang</copyright>
-    <lastBuildDate>Tue, 01 Sep 2020 10:40:27 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 28 Sep 2020 10:15:17 +0800</lastBuildDate>
     
 	<atom:link href="https://KayneWang.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>bigNUmber</title>
+      <link>https://KayneWang.github.io/tags/bignumber/</link>
+      <pubDate>Mon, 28 Sep 2020 10:15:17 +0800</pubDate>
+      
+      <guid>https://KayneWang.github.io/tags/bignumber/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>js</title>
+      <link>https://KayneWang.github.io/tags/js/</link>
+      <pubDate>Mon, 28 Sep 2020 10:15:17 +0800</pubDate>
+      
+      <guid>https://KayneWang.github.io/tags/js/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>promise</title>
@@ -27,15 +45,6 @@
       <pubDate>Thu, 20 Aug 2020 20:45:14 +0800</pubDate>
       
       <guid>https://KayneWang.github.io/tags/react/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>js</title>
-      <link>https://KayneWang.github.io/tags/js/</link>
-      <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://KayneWang.github.io/tags/js/</guid>
       <description></description>
     </item>
     

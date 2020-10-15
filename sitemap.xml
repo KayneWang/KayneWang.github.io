@@ -9,21 +9,49 @@
   </url>
   
   <url>
-    <loc>https://KayneWang.github.io/post/js-not/</loc>
-    <lastmod>2020-09-25T17:57:03+08:00</lastmod>
+    <loc>https://KayneWang.github.io/tags/bignumber/</loc>
+    <lastmod>2020-09-28T10:15:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://KayneWang.github.io/post/js-bignumber/</loc>
+    <lastmod>2020-09-28T10:15:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://KayneWang.github.io/tags/js/</loc>
+    <lastmod>2020-09-28T10:15:17+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://KayneWang.github.io/</loc>
-    <lastmod>2020-09-25T17:57:03+08:00</lastmod>
+    <lastmod>2020-09-28T10:15:17+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://KayneWang.github.io/post/</loc>
+    <lastmod>2020-09-28T10:15:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://KayneWang.github.io/tags/</loc>
+    <lastmod>2020-09-28T10:15:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://KayneWang.github.io/post/js-not/</loc>
     <lastmod>2020-09-25T17:57:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -86,13 +114,6 @@
   </url>
   
   <url>
-    <loc>https://KayneWang.github.io/tags/</loc>
-    <lastmod>2020-09-03T14:45:06+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://KayneWang.github.io/post/read-list/</loc>
     <lastmod>2020-08-31T22:44:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -129,13 +150,6 @@
   
   <url>
     <loc>https://KayneWang.github.io/post/js/</loc>
-    <lastmod>2020-09-03T14:45:06+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://KayneWang.github.io/tags/js/</loc>
     <lastmod>2020-09-03T14:45:06+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
